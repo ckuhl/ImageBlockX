@@ -54,7 +54,7 @@ function toggleBlocking(settings) {
 	// add the listener, passing the filter argument and "blocking"
 	browser.webRequest.onBeforeRequest.addListener(
 			cancel,
-			{urls: [settings.pattern], types: ["image"]},
+			{urls: [settings.pattern], types: ["image", "imageset"]},
 			["blocking"]
 			);
 
