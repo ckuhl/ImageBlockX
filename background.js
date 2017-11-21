@@ -41,24 +41,32 @@ gettingStoredSettings.then(checkStoredSettings, onError);
 
 // ==========================================================================
 
+var handler = undefined;
+
 
 // toggle whether or not to block images
 function toggleBlocking(settings) {
 
 	// cancel function returns an object
 	// which contains a property `cancel` set to `true`
-	function cancel(requestDetails) {
+	function cancelImages(requestDetails) {
+		console.log("cancel state is", settings.is_blocking);
 		return {cancel: settings.is_blocking};
 	}
 
-	// add the listener, passing the filter argument and "blocking"
+	if ( handler ) {
+		browser.webRequest.onBeforeRequest.removeListener(handler);
+	}
+
+	settings.is_blocking = !settings.is_blocking;
+
+	handler = cancelImages;
 	browser.webRequest.onBeforeRequest.addListener(
-			cancel,
+			handler,
 			{urls: [settings.pattern], types: ["image", "imageset"]},
 			["blocking"]
 			);
 
-	settings.is_blocking = !settings.is_blocking;
 
 	if ( settings.is_blocking ) {
 		settings.title = "Images are blocked";
@@ -79,8 +87,10 @@ function toggleBlocking(settings) {
 		console.log("Reloading current page");
 	}
 
-	console.log(settings.is_blocking);
+	console.log(settings);
 	browser.storage.local.set(settings);
+
+	return cancelImages
 }
 
 
@@ -94,10 +104,10 @@ gettingStoredSettings.then((settings) => {
 
 
 /*
-   On click, fetch stored settings and forget browsing data.
+   On click, get settings state and toggle blocking
    */
 browser.browserAction.onClicked.addListener(() => {
-	const gettingStoredSettings = browser.storage.local.get();
-	gettingStoredSettings.then(toggleBlocking, onError);
+	const getStoredSettings = browser.storage.local.get();
+	getStoredSettings.then(toggleBlocking, onError);
 });
 
