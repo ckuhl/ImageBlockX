@@ -1,4 +1,4 @@
-# Image Block X
+# [Image Block X](https://addons.mozilla.org/en-US/firefox/addon/image-block-x/)
 
 ## What does it do?
 It's a switch to toggle whether or not the browser will load images.

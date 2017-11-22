@@ -41,10 +41,13 @@ gettingStoredSettings.then(checkStoredSettings, onError);
 
 // ==========================================================================
 
+// Reference to current handler
 var handler = undefined;
 
 
-// toggle whether or not to block images
+/*
+Toggle whether or not to block images
+*/
 function toggleBlocking(settings) {
 
 	// cancel function returns an object
@@ -104,8 +107,8 @@ gettingStoredSettings.then((settings) => {
 
 
 /*
-   On click, get settings state and toggle blocking
-   */
+On click, get settings and toggle blocking
+*/
 browser.browserAction.onClicked.addListener(() => {
 	const getStoredSettings = browser.storage.local.get();
 	getStoredSettings.then(toggleBlocking, onError);
