@@ -30,6 +30,11 @@ Meta-improvements to be done:
 - 
 
 
+## Build dependencies
+
+ImageMagick (http://www.imagemagick.org) is used to generate png icons from svg.
+Also needs zip commandline archiver.
+
 ## Contribution
 Have an idea for a feature that I haven't added or mentioned? Feel free to
 raise an issue on GitHub or if you're feeling daring, make a pull request!
@@ -41,4 +46,3 @@ raise an issue on GitHub or if you're feeling daring, make a pull request!
 3. Update `CHANGELOG.md`
 4. `make`
 5. Upload to [AMO](https://addons.mozilla.org/en-US/developers/addon/image-block-x/versions/submit/)
-
