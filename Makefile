@@ -40,5 +40,5 @@ endef
 
 .PHONY: clean
 clean:
-	rm ${PROJECT_NAME}.zip icons/*.png
+	rm -fv ${PROJECT_NAME}.zip icons/*.png
 
