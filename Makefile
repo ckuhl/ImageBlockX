@@ -20,6 +20,8 @@ ICONS_BLOCKED := \
 	icons/image_blocked-512.png
 
 
+all: make
+
 make: gen_ico
 	zip -r ./${PROJECT_NAME}.zip * -x ${EXCLUDE}
 
