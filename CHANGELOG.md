@@ -1,3 +1,7 @@
+# 0.3
+- add new high-contrast icon
+- add more icon sizes
+
 # 0.2.2
 - emergency fix for things not working after the 3rd toggle
 

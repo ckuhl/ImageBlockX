@@ -46,3 +46,4 @@ raise an issue on GitHub or if you're feeling daring, make a pull request!
 3. Update `CHANGELOG.md`
 4. `make`
 5. Upload to [AMO](https://addons.mozilla.org/en-US/developers/addon/image-block-x/versions/submit/)
+
