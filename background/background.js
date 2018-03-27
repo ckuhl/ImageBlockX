@@ -29,6 +29,7 @@ function checkStoredSettings(storedSettings) {
 	if (!storedSettings.pattern ||
 			!storedSettings.title ||
 			!storedSettings.icon_path) {
+		console.log("Stored settings not found, loading default");
 		browser.storage.local.set(defaultSettings);
 	}
 }
@@ -110,7 +111,7 @@ gettingStoredSettings.then((settings) => {
 On click, get settings and toggle blocking
 */
 browser.browserAction.onClicked.addListener(() => {
-	const getStoredSettings = browser.storage.local.get();
+	var getStoredSettings = browser.storage.local.get();
 	getStoredSettings.then(toggleBlocking, onError);
 });
 

@@ -10,8 +10,8 @@ data will last as long as possible.
 
 I previously used
 [Image Block](https://addons.mozilla.org/en-US/firefox/addon/image-block/)
-but since it has not been converted to a web extension,
-I figured I'd learn how to write a web extension and do it myself.
+but since it has not been converted to a web extension, I figured I'd learn
+how to write a web extension and do it myself.
 
 
 ## Is it done?
@@ -27,17 +27,16 @@ as:
 
 Meta-improvements to be done:
 - improving the release process
-- 
 
 
 ## Build dependencies
+[ImageMagick](https://www.imagemagick.org/script/index.php) is used to generate
+icons from the vector.
 
-ImageMagick (http://www.imagemagick.org) is used to generate png icons from svg.
-Also needs zip commandline archiver.
 
 ## Contribution
 Have an idea for a feature that I haven't added or mentioned? Feel free to
-raise an issue on GitHub or if you're feeling daring, make a pull request!
+raise an issue on GitHub, or if you're feeling daring, make a pull request!
 
 
 ## Release Process

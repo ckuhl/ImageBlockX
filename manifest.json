@@ -3,10 +3,11 @@
   "description": "Add a button to the toolbar to disable loading all images",
   "manifest_version": 2,
   "name": "Image Block X",
-  "version": "0.3",
+  "version": "0.3.1",
   "homepage_url": "https://github.com/ckuhl/ImageBlockX",
   "icons": {
-    "48": "icons/image_blocked-64.png"
+    "32": "icons/image_blocked-32.png",
+    "64": "icons/image_blocked-64.png"
   },
 
   "permissions": [
