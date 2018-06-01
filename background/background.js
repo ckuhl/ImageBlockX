@@ -4,13 +4,13 @@
 /*
 Default settings. If there is nothing in storage, use these values.
 */
-var defaultSettings = {
+const defaultSettings = {
 	pattern: "<all_urls>",
 	is_blocking: false,
 	toggleReload: false,
 
 	title: "Images are allowed",
-	icon_path: "icons/image_blocked-32.png"
+	icon_path: "icons/image-32.png"
 };
 
 /*
@@ -25,7 +25,8 @@ On startup, check whether we have stored settings.
 If we don't, then store the default settings.
 */
 function checkStoredSettings(storedSettings) {
-	console.log(storedSettings, defaultSettings);
+	console.log("stored settings:  ", storedSettings);
+	console.log("default settings: ", defaultSettings);
 	if (!storedSettings.pattern ||
 			!storedSettings.title ||
 			!storedSettings.icon_path) {
@@ -34,11 +35,30 @@ function checkStoredSettings(storedSettings) {
 	}
 }
 
-const gettingStoredSettings = browser.storage.local.get();
-gettingStoredSettings.then(checkStoredSettings, onError);
+/*
+Initialize extension on load
+*/
+function initialize() {
+	const gettingStoredSettings = browser.storage.local.get();
+	gettingStoredSettings.then((settings) => {
+		checkStoredSettings(settings);
+
+		browser.browserAction.setTitle({title: settings.title});
+		browser.browserAction.setIcon({path: settings.icon_path});
+
+		/*
+		On click, get settings and toggle blocking
+		*/
+		browser.browserAction.onClicked.addListener(() => {
+			let getStoredSettings = browser.storage.local.get();
+			getStoredSettings.then(toggleBlocking, onError);
+		});
+
+	}, onError);
+}
 
 
-
+initialize();
 
 // ==========================================================================
 
@@ -92,26 +112,10 @@ function toggleBlocking(settings) {
 	}
 
 	console.log(settings);
-	browser.storage.local.set(settings);
+	browser.storage.local.set(settings).then((changes) => {
+		console.log("Settings saved");
+	}, onError);
 
 	return cancelImages
 }
-
-
-/*
-Runtime initialization
-*/
-gettingStoredSettings.then((settings) => {
-	browser.browserAction.setTitle({title: settings.title});
-	browser.browserAction.setIcon({path: settings.icon_path});
-});
-
-
-/*
-On click, get settings and toggle blocking
-*/
-browser.browserAction.onClicked.addListener(() => {
-	var getStoredSettings = browser.storage.local.get();
-	getStoredSettings.then(toggleBlocking, onError);
-});
 

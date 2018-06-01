@@ -1,3 +1,6 @@
+# 0.3.2
+- fix jankiness on browser reload
+
 # 0.3
 - add new high-contrast icon
 - add more icon sizes
