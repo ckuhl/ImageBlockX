@@ -1,0 +1,35 @@
+{
+  "description": "Add a button to the toolbar to disable loading all images",
+  "manifest_version": 2,
+  "name": "Image Block X",
+  "version": "0.4",
+  "homepage_url": "https://github.com/ckuhl/ImageBlockX/",
+  "icons": {
+    "16": "icons/image_blocked-16.png",
+    "24": "icons/image_blocked-24.png",
+    "32": "icons/image_blocked-32.png",
+    "64": "icons/image_blocked-64.png",
+    "128": "icons/image_blocked-128.png",
+    "256": "icons/image_blocked-256.png",
+    "512": "icons/image_blocked-512.png"
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>",
+    "storage"
+  ],
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": "icons/image_allowed-32.png",
+    "default_title": "Images are allowed"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  }
+}

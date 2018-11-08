@@ -1,2 +1,5 @@
-*.zip
-icons/*.png
+# Extension generated from source
+**/*.zip
+
+# Images generated from SVGs
+**/*.png

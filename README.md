@@ -1,10 +1,10 @@
 # [Image Block X](https://addons.mozilla.org/en-US/firefox/addon/image-block-x/)
 
-## What does it do?
-It's a switch to toggle whether or not the browser will load images.
+A button to toggle loading images in Firefox.
 
 
 ## Why?
+
 I like to tether my laptop to my phone, and this way I can ensure my
 data will last as long as possible.
 
@@ -14,35 +14,45 @@ but since it has not been converted to a web extension, I figured I'd learn
 how to write a web extension and do it myself.
 
 
-## Is it done?
-Hardly.
+## Possible improvements
 
-There's still lots of improvements that could be done in the future, such
-as:
-- whitelisting certain pages
-- loading only images below a certain size
-- alernately blacklisting certain pages
-- allow toggling on a per-tab basis
+While it works now, there are a lot of possible improvements that can be made:
 
 
-Meta-improvements to be done:
-- improving the release process
+### Features
+
+- [ ] Page whitelisting (and / or blacklisting)
+- [ ] Conditional image loading (if a certain size)
+- [ ] Toggle loading per-tab (instead of a global state)
+
+
+### Project improvements
+
+- [ ] Simplifying the release process
+- [ ] Cleaning up the code / logic
+- [ ] Adding tests
 
 
 ## Build dependencies
-[ImageMagick](https://www.imagemagick.org/script/index.php) is used to generate
-icons from the vector.
+
+[ImageMagick](https://www.imagemagick.org/script/index.php) is required to
+generate PNG icons from the source vector graphics.
+
+[optipng](http://optipng.sourceforge.net/) is optionally used to compress
+icons before zipping them up. If people are using this to save bandwidth, it
+only makes sense to save bandwidth here too.
 
 
 ## Contribution
+
 Have an idea for a feature that I haven't added or mentioned? Feel free to
 raise an issue on GitHub, or if you're feeling daring, make a pull request!
 
 
-## Release Process
+## Current deployment process
+
 1. Make changes
 2. Increment version number in `manifest.json`
 3. Update `CHANGELOG.md`
 4. `make`
 5. Upload to [AMO](https://addons.mozilla.org/en-US/developers/addon/image-block-x/versions/submit/)
-
