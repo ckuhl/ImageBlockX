@@ -1,22 +1,26 @@
+## 0.5
+- Update code with JSDoc type annotations (stability)
+- Resolve minor logic errors (stability)
+
 ## 0.4
-- code now uses ES6, errors have been resolved
-- icons are now compressed (smaller updates!)
+- Migrate to ES6, resolving minor errors (stability)
+- PNG Icons are minified (smaller download size)
 
 ### 0.3.2
-- fix weirdness on browser reload
+- Resolve error on browser reload (stability)
 
 ## 0.3
-- add new high-contrast icon
-- add more icon sizes
+- Add new high-contrast icon (feature)
+- Add more icon sizes (feature)
 
 ### 0.2.2
-- emergency fix for things not working after the 3rd toggle
+- Emergency fix for things not working after the 3rd toggle (fix)
 
 ### 0.2.1
-- fix for `imageset` type resources not being blocked
+- Fix for `imageset` type resources not being blocked (fix)
 
 ## 0.2
-- settings are now stored / loaded between launches
+- Settings are now stored / loaded between launches (feature)
 
-# 0.1
-- initial release
+## 0.1
+- Initial release

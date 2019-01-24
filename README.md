@@ -24,12 +24,14 @@ While it works now, there are a lot of possible improvements that can be made:
 - [ ] Page whitelisting (and / or blacklisting)
 - [ ] Conditional image loading (if a certain size)
 - [ ] Toggle loading per-tab (instead of a global state)
+- [ ] Light / dark mode icons
 
 
 ### Project improvements
 
 - [ ] Simplifying the release process
 - [ ] Cleaning up the code / logic
+- [ ] Adding JSDoc and type hints to code
 - [ ] Adding tests
 
 

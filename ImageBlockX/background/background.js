@@ -1,9 +1,29 @@
 "use strict";
 
+/**
+ * UI state structure
+ * @typedef {{windowDetails: {title: string}, icon: {path: string}}} ImageBlockXUiState
+ */
 
-// On startup, check whether we have stored settings.
-// If we don't, then store the default settings.
-const checkStoredSettings = (storedSettings) => {
+/**
+ * Entire web extension state structure
+ * @typedef {{isBlocking: boolean, ui: ImageBlockXUiState, pattern: string, isReloadingOnToggle: boolean}} ImageBlockXState
+ */
+
+/**
+ * Handler function that determines whether or not to block images
+ * @typedef {function(*): {cancel: boolean}} BlockingHandler
+ */
+
+
+/**
+ * On startup, check whether we have stored settings.
+ * If we don't, then store the default settings.
+ *
+ * @param {ImageBlockXState} storedSettings - the settings as found in the browser local storage
+ */
+const checkStoredSettings = storedSettings => {
+    /** @type {ImageBlockXState} */
     const defaultState = {
         pattern: "<all_urls>",
         isBlocking: false,
@@ -19,14 +39,24 @@ const checkStoredSettings = (storedSettings) => {
         },
     };
 
+    // TODO: Find way to merge settings if incomplete (how could that happen however?)
     if (!storedSettings.pattern ||
-        !storedSettings.windowDetails ||
-        !storedSettings.icon) {
+        !storedSettings.isBlocking ||
+        !storedSettings.isReloadingOnToggle ||
+        !storedSettings.ui) {
         console.debug("Stored settings not found, loading default");
-        browser.storage.local.set(defaultState).then(() => console.debug("Default settings loaded"));
+        browser.storage.local.set(defaultState).then(
+            () => console.debug("Default settings loaded")
+        );
     }
 };
 
+/**
+ * TODO: What does this do?
+ *
+ * @param {ImageBlockXState} state
+ * @returns {ImageBlockXState} The modified settings
+ */
 const updateState = (state) => {
     if (state.isBlocking) {
         state.ui = {
@@ -50,19 +80,41 @@ const updateState = (state) => {
     return state;
 };
 
+/**
+ * TODO: What type is this?
+ * TODO: Return whether or not this succeeded?
+ *
+ * @param {ImageBlockXState} state
+ */
 const updateUI = (state) => {
     browser.browserAction.setIcon(state.ui.icon).then();
     browser.browserAction.setTitle(state.ui.windowDetails).then();
 };
 
 
-// The current blocking handler
+/**
+ * The active blocking handler function
+ * TODO: Can this be initialized to something not-null?
+ *
+ * @type BlockingHandler
+ */
 let handler = undefined;
 
 
-// Toggle whether or not to block images
-const toggleBlocking = (settings) => {
-    const blockingHandler = (requestDetails) => {
+/**
+ * Toggle whether or not to block images
+ *
+ * @param {ImageBlockXState} settings
+ * @returns BlockingHandler
+ */
+const toggleBlocking = settings => {
+    /**
+     * Handler that the browser calls when loading any resource
+     *
+     * @param {*} requestDetails
+     * @returns {{cancel: boolean}}
+     */
+    const blockingHandler = requestDetails => {
         return {
             cancel: settings.isBlocking
         };
@@ -92,35 +144,38 @@ const toggleBlocking = (settings) => {
     );
 
     settings = updateState(settings);
-    updateUI(settings);
+    updateUI(settings); // TODO: Get rid of void method
 
     // Reload page on toggle
     if (settings.isReloadingOnToggle) {
         browser.tabs.reload().then(
             () => console.debug("Current page reloaded..."),
-            (e) => console.error(e));
+            e => console.error(e)
+        );
     }
 
     browser.storage.local.set(settings).then(
         () => console.debug("Settings saved"),
-        (e) => console.error(e));
+        e => console.error(e)
+    );
 
     return blockingHandler;
 };
 
 
 (() => {
-    browser.storage.local.get().then((settings) => {
+    browser.storage.local.get().then(
+        settings => {
             checkStoredSettings(settings);
             updateState(settings);
             updateUI(settings);
         },
-        (e) => console.error(e));
+        e => console.error(e));
 
     // On click, get settings and toggle blocking
     browser.browserAction.onClicked.addListener(() => {
         browser.storage.local.get().then(
-            (settings) => toggleBlocking(settings),
-            (e) => console.error(e));
+            settings => toggleBlocking(settings),
+            e => console.error(e));
     });
 })();

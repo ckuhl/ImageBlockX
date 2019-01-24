@@ -12,14 +12,17 @@ ALLOWED := $(IMAGE_SIZES:%=image_blocked-%.png)
 all: make  ## Default target, generate package
 
 make: $(BLOCKED) $(ALLOWED)  ## Generate requirements and bundle into package
+	@which optipng || echo "optipng is required to build" && exit 1
 	-optipng -o7 ${SOURCE}/icons/*.png # compress icons if `optipng` is available
 	cd ${SOURCE}; zip -r ${PROJECT_NAME}.zip * -x ${EXCLUDE}; mv ${PROJECT_NAME}.zip ..; cd -
 
 image_blocked-%.png:  ## Generate "blocked" images
-	convert -transparent white -geometry $*x$* ${ASSETS}/icons/image_blocked.svg ${SOURCE}/icons/image_blocked-$*.png
+	@which convert || echo "imagemagick is required to build" && exit 1
+	convert -transparent white -geometry $*x$* ${ASSETS}/icons/image_blocked_default.svg ${SOURCE}/icons/image_blocked-$*.png
 
 image_allowed-%.png:  ## Generate "allowed" images
-	convert -transparent white -geometry $*x$* ${ASSETS}/icons/image_allowed.svg ${SOURCE}/icons/image_allowed-$*.png
+	@which convert || echo "imagemagick is required to build" && exit 1
+	convert -transparent white -geometry $*x$* ${ASSETS}/icons/image_allowed_default.svg ${SOURCE}/icons/image_allowed-$*.png
 
 
 .PHONY: clean help
