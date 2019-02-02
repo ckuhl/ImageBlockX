@@ -1,4 +1,5 @@
 ## 0.5
+- Replace generated PNG icons with source SVG icon (feature)
 - Update code with JSDoc type annotations (stability)
 - Resolve minor logic errors (stability)
 

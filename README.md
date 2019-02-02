@@ -23,27 +23,17 @@ While it works now, there are a lot of possible improvements that can be made:
 
 - [ ] Page whitelisting (and / or blacklisting)
 - [ ] Conditional image loading (if a certain size)
+- [ ] Allow loading favicons
 - [ ] Toggle loading per-tab (instead of a global state)
 - [ ] Light / dark mode icons
 
 
 ### Project improvements
 
+- [X] Cleaning up the code / logic
+- [X] Adding JSDoc and type hints to code
 - [ ] Simplifying the release process
-- [ ] Cleaning up the code / logic
-- [ ] Adding JSDoc and type hints to code
 - [ ] Adding tests
-
-
-## Build dependencies
-
-[ImageMagick](https://www.imagemagick.org/script/index.php) is required to
-generate PNG icons from the source vector graphics.
-
-[optipng](http://optipng.sourceforge.net/) is optionally used to compress
-icons before zipping them up. If people are using this to save bandwidth, it
-only makes sense to save bandwidth here too.
-
 
 ## Contribution
 

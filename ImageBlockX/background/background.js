@@ -34,7 +34,7 @@ const checkStoredSettings = storedSettings => {
                 title: "Images are allowed",
             },
             icon: {
-                path: "icons/image-32.png",
+                path: "icons/image_allowed.svg",
             },
         },
     };
@@ -64,7 +64,7 @@ const updateState = (state) => {
                 title: "Images are blocked",
             },
             icon: {
-                path: "icons/image_blocked-32.png",
+                path: "icons/image_blocked.svg",
             },
         }
     } else {
@@ -73,7 +73,7 @@ const updateState = (state) => {
                 title: "Images are allowed",
             },
             icon: {
-                path: "icons/image_allowed-32.png",
+                path: "icons/image_allowed.svg",
             },
         }
     }

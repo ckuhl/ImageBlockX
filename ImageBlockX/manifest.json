@@ -5,13 +5,14 @@
   "version": "0.5",
   "homepage_url": "https://github.com/ckuhl/ImageBlockX/",
   "icons": {
-    "16": "icons/image_blocked-16.png",
-    "24": "icons/image_blocked-24.png",
-    "32": "icons/image_blocked-32.png",
-    "64": "icons/image_blocked-64.png",
-    "128": "icons/image_blocked-128.png",
-    "256": "icons/image_blocked-256.png",
-    "512": "icons/image_blocked-512.png"
+    "16": "icons/image_blocked.svg",
+    "24": "icons/image_blocked.svg",
+    "32": "icons/image_blocked.svg",
+    "48": "icons/image_blocked.svg",
+    "64": "icons/image_blocked.svg",
+    "128": "icons/image_blocked.svg",
+    "256": "icons/image_blocked.svg",
+    "512": "icons/image_blocked.svg"
   },
   "permissions": [
     "webRequest",
@@ -25,7 +26,7 @@
     ]
   },
   "browser_action": {
-    "default_icon": "icons/image_allowed-32.png",
+    "default_icon": "icons/image_allowed.svg",
     "default_title": "Images are allowed"
   },
   "options_ui": {
