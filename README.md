@@ -25,13 +25,10 @@ While it works now, there are a lot of possible improvements that can be made:
 - [ ] Conditional image loading (if a certain size)
 - [ ] Allow loading favicons
 - [ ] Toggle loading per-tab (instead of a global state)
-- [ ] Light / dark mode icons
 
 
 ### Project improvements
 
-- [X] Cleaning up the code / logic
-- [X] Adding JSDoc and type hints to code
 - [ ] Simplifying the release process
 - [ ] Adding tests
 

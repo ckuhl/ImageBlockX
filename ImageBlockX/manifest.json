@@ -32,5 +32,10 @@
   "options_ui": {
     "page": "options/options.html",
     "browser_style": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{0035bf10-3f36-4d60-b92d-08c1a8b060a6}"
+    }
   }
 }

@@ -1,5 +1,6 @@
 ## 0.5
 - Replace generated PNG icons with source SVG icon (feature)
+- Update SVG to use browser theme colours (style)
 - Update code with JSDoc type annotations (stability)
 - Resolve minor logic errors (stability)
 
