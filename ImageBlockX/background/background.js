@@ -18,9 +18,10 @@
 
 /**
  * On startup, check whether we have stored settings.
- * If we don't, then store the default settings.
+ * If we don't, then store and return the default settings.
  *
  * @param {ImageBlockXState} storedSettings - the settings as found in the browser local storage
+ * @return {ImageBlockXState} storedSettings if valid, the default settings otherwise.
  */
 const checkStoredSettings = storedSettings => {
     /** @type {ImageBlockXState} */
@@ -40,14 +41,20 @@ const checkStoredSettings = storedSettings => {
     };
 
     // TODO: Find way to merge settings if incomplete (how could that happen however?)
-    if (!storedSettings.pattern ||
-        !storedSettings.isBlocking ||
-        !storedSettings.isReloadingOnToggle ||
-        !storedSettings.ui) {
+    if (!("pattern" in storedSettings) ||
+        !("isBlocking" in storedSettings) ||
+        !("isReloadingOnToggle" in storedSettings) ||
+        !("ui" in storedSettings)) {
         console.debug("Stored settings not found, loading default");
         browser.storage.local.set(defaultState).then(
             () => console.debug("Default settings loaded")
         );
+
+        return defaultState;
+    } else {
+      console.debug("Valid stored settings found.");
+
+      return storedSettings;
     }
 };
 
@@ -166,9 +173,13 @@ const toggleBlocking = settings => {
 (() => {
     browser.storage.local.get().then(
         settings => {
-            checkStoredSettings(settings);
+            settings = checkStoredSettings(settings);
             updateState(settings);
             updateUI(settings);
+
+            // TODO: a hack to register the blocking handler.
+            toggleBlocking(settings);
+            toggleBlocking(settings);
         },
         e => console.error(e));
 
